@@ -11,8 +11,9 @@ function serverSupabase() {
 // PATCH /api/parking-spots/[id]  – cast a vote
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const { id } = await params;
   let body: { vote: "up" | "down" };
   try {
     body = await request.json();
@@ -34,7 +35,7 @@ export async function PATCH(
   const { data: current, error: fetchError } = await supabase
     .from("parking_spots")
     .select(column)
-    .eq("id", params.id)
+    .eq("id", id)
     .single();
 
   if (fetchError || !current) {
@@ -44,7 +45,7 @@ export async function PATCH(
   const { data, error } = await supabase
     .from("parking_spots")
     .update({ [column]: (current[column as keyof typeof current] as number) + 1 })
-    .eq("id", params.id)
+    .eq("id", id)
     .select()
     .single();
 

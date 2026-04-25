@@ -20,7 +20,7 @@ A mobile-first web application that leverages a user's location and **crowdsourc
 
 | Layer | Choice |
 |---|---|
-| Framework | [Next.js 14](https://nextjs.org/) (App Router) |
+| Framework | [Next.js 15](https://nextjs.org/) (App Router) |
 | Language | TypeScript |
 | Styling | Tailwind CSS |
 | Map | [Leaflet](https://leafletjs.com/) / [react-leaflet](https://react-leaflet.js.org/) |
